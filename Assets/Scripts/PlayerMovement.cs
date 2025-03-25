@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private float verticalRotation = 0f;
     private Transform cameraTransform;
     private Rigidbody rb;
-    public float MoveSpeed = 5f;
+    public float moveSpeed = 5f;
+    private float sprintSpeed;
     private float moveHorizontal;
     private float moveForward;
     public float jumpForce = 10f;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        sprintSpeed = moveSpeed * 2;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         cameraTransform = Camera.main.transform;
@@ -56,10 +58,16 @@ public class PlayerMovement : MonoBehaviour
         {
             groundCheckTimer -= Time.deltaTime;
         }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(0);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+            moveSpeed = sprintSpeed;
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            moveSpeed = sprintSpeed/2;
     }
 
     void FixedUpdate()
@@ -70,9 +78,9 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-
+        
         Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
-        Vector3 targetVelocity = movement * MoveSpeed;
+        Vector3 targetVelocity = movement * moveSpeed;
 
         Vector3 velocity = rb.linearVelocity;
         velocity.x = targetVelocity.x;
@@ -82,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && moveHorizontal == 0 && moveForward == 0)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            
         }
     }
 
@@ -91,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Rotate(0, horizontalRotation, 0);
 
         verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 90f);
+        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 30f);
 
         cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
     }

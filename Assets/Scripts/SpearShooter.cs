@@ -29,14 +29,15 @@ public class SpearShooter : MonoBehaviour
     void ShootingMethod() 
     {
         readyToThrow = false;
-        GameObject newSpear = Instantiate(spear, attackPoint.position, cam.rotation);
+        GameObject newSpear = Instantiate(spear, attackPoint.position, Quaternion.Euler(cam.eulerAngles.x + 90, cam.eulerAngles.y,cam.eulerAngles.z));
         Rigidbody rb = newSpear.GetComponent<Rigidbody>();
         Vector3 forceDirection = cam.forward;
         RaycastHit hit;
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 500f)) 
-        {
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 10f))
+        {}
+        
+        else if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
             forceDirection = (hit.point - attackPoint.position).normalized;
-        }
 
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
         rb.AddForce(forceToAdd, ForceMode.Impulse);

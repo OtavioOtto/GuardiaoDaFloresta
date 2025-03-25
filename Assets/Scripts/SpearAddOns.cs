@@ -26,7 +26,6 @@ public class SpearAddOns : MonoBehaviour
         }
 
         rb.isKinematic = true;
-        transform.SetParent(other.transform);
         Invoke(nameof(DestroySpear), 3);
     }
 
