@@ -74,14 +74,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
         Vector3 targetVelocity = movement * MoveSpeed;
 
-        Vector3 velocity = rb.velocity;
+        Vector3 velocity = rb.linearVelocity;
         velocity.x = targetVelocity.x;
         velocity.z = targetVelocity.z;
-        rb.velocity = velocity;
+        rb.linearVelocity = velocity;
 
         if (isGrounded && moveHorizontal == 0 && moveForward == 0)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
     }
 
@@ -100,18 +100,18 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = false;
         groundCheckTimer = groundCheckDelay;
-        rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
     }
 
     void ApplyJumpPhysics()
     {
-        if (rb.velocity.y < 0)
+        if (rb.linearVelocity.y < 0)
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
         }
-        else if (rb.velocity.y > 0)
+        else if (rb.linearVelocity.y > 0)
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * ascendMultiplier * Time.fixedDeltaTime;
+            rb.linearVelocity += Vector3.up * Physics.gravity.y * ascendMultiplier * Time.fixedDeltaTime;
         }
     }
 }

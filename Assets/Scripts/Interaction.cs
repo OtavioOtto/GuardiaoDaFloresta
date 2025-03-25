@@ -18,7 +18,7 @@ public class Interaction : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !child.activeSelf)
         {
             aviso.gameObject.SetActive(true);
             playerInside = true;
