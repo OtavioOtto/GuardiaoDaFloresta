@@ -78,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
-        
         Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
         Vector3 targetVelocity = movement * moveSpeed;
 
@@ -90,19 +89,22 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && moveHorizontal == 0 && moveForward == 0)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
-            
         }
+
     }
 
     void RotateCamera()
     {
-        float horizontalRotation = Input.GetAxis("Mouse X") * mouseSensitivity;
-        transform.Rotate(0, horizontalRotation, 0);
+        if (Time.timeScale != 0)
+        {
+            float horizontalRotation = Input.GetAxis("Mouse X") * mouseSensitivity;
+            transform.Rotate(0, horizontalRotation, 0);
 
-        verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-        verticalRotation = Mathf.Clamp(verticalRotation, -90f, 30f);
+            verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+            verticalRotation = Mathf.Clamp(verticalRotation, -90f, 30f);
 
-        cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+            cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
+        }
     }
 
     void Jump()

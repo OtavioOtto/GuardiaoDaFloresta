@@ -13,20 +13,23 @@ public class SpearAddOns : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (targethit)
-            return;
-        else
-            targethit = true;
-
-        if (other.gameObject.GetComponent<EnemyHealtManager>() != null)
+        if (!other.CompareTag("Player"))
         {
-            EnemyHealtManager enemy = other.gameObject.GetComponent<EnemyHealtManager>();
-            enemy.TakeDamage(damage);
-            Destroy(gameObject);
-        }
+            if (targethit)
+                return;
+            else
+                targethit = true;
 
-        rb.isKinematic = true;
-        Invoke(nameof(DestroySpear), 3);
+            if (other.gameObject.GetComponent<EnemyHealtManager>() != null)
+            {
+                EnemyHealtManager enemy = other.gameObject.GetComponent<EnemyHealtManager>();
+                enemy.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+
+            rb.isKinematic = true;
+            Invoke(nameof(DestroySpear), 3);
+        }
     }
 
     private void DestroySpear() 

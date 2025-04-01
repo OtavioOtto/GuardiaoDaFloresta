@@ -22,7 +22,7 @@ public class SpearShooter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && readyToThrow) 
+        if (Input.GetMouseButton(0) && readyToThrow && Time.timeScale != 0) 
             ShootingMethod();
     }
 
@@ -33,7 +33,7 @@ public class SpearShooter : MonoBehaviour
         Rigidbody rb = newSpear.GetComponent<Rigidbody>();
         Vector3 forceDirection = cam.forward;
         RaycastHit hit;
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 10f))
+        if (Physics.Raycast(cam.position, cam.forward, out hit, 5f))
         {}
         
         else if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
