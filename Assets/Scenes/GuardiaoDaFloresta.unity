@@ -1614,7 +1614,7 @@ MonoBehaviour:
   attackPoint: {fileID: 1010001455}
   spear: {fileID: 1284899459749979935, guid: 955096cdffd94004fba18a94f148bb13, type: 3}
   throwForce: 50
-  throwUpwardForce: 5
+  throwUpwardForce: 8
   throwCooldown: 0.5
   readyToThrow: 0
 --- !u!114 &1078976534
