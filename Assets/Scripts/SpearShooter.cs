@@ -5,47 +5,87 @@ public class SpearShooter : MonoBehaviour
     [Header("Game Objects")]
     [SerializeField] private Transform cam;
     [SerializeField] private Transform attackPoint;
+    [SerializeField] private Transform curvePoint;
     [SerializeField] private GameObject spear;
+    [SerializeField] private Rigidbody spearRB;
+    [SerializeField] private CapsuleCollider spearCol;
 
     [Header("Values")]
     [SerializeField] private float throwForce;
     [SerializeField] private float throwUpwardForce;
+    [SerializeField] private Vector3 old_pos;
 
     [Header("Settings")]
-    [SerializeField] private float throwCooldown;
-    [SerializeField] private bool readyToThrow;
+    [SerializeField] private bool isReturning;
+    [SerializeField] private bool playerHasSpear;
+    [SerializeField] private float time;
+
+    private SpearAddOns addOns;
+
 
     private void Start()
     {
-        readyToThrow = true;
+        spearRB = spear.GetComponent<Rigidbody>();
+        addOns = spear.GetComponent<SpearAddOns>();
+        playerHasSpear = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && readyToThrow && Time.timeScale != 0) 
+        if (Input.GetMouseButton(0) && playerHasSpear && Time.timeScale != 0) 
             ShootingMethod();
+        if (Input.GetMouseButton(1) && !playerHasSpear && Time.timeScale != 0)
+            ReturningMethod();
+        if (isReturning) {
+            if (time < 1.0f)
+            {
+                spear.transform.position = ReturnCalculus(time, old_pos, curvePoint.position, attackPoint.position);
+                time += Time.deltaTime;
+            }
+            else
+                ResetSpear();
+        }
+            
     }
 
     void ShootingMethod() 
     {
-        readyToThrow = false;
-        GameObject newSpear = Instantiate(spear, attackPoint.position, Quaternion.Euler(cam.eulerAngles.x + 90, cam.eulerAngles.y,cam.eulerAngles.z));
-        Rigidbody rb = newSpear.GetComponent<Rigidbody>();
-        Vector3 forceDirection = cam.forward;
-        RaycastHit hit;
-        if (Physics.Raycast(cam.position, cam.forward, out hit, 5f))
-        {}
-        
-        else if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
-            forceDirection = (hit.point - attackPoint.position).normalized;
-
-        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
-        rb.AddForce(forceToAdd, ForceMode.Impulse);
-        Invoke(nameof(ResetThrow), throwCooldown);
+        playerHasSpear = false;
+        isReturning = false;
+        spear.transform.parent = null;  
+        spearRB.isKinematic = false;
+        spearRB.AddForce(Camera.main.transform.TransformDirection(Vector3.forward)*throwForce, ForceMode.Impulse);
     }
 
-    private void ResetThrow()
+    void ReturningMethod() 
     {
-        readyToThrow = true;
+        spearRB.isKinematic = false;
+        spearCol.enabled = false;
+        time = 0.0f;
+        old_pos = spear.transform.position;
+        isReturning = true;
+        spearRB.linearVelocity = Vector3.zero;
+        
+    }
+    void ResetSpear()
+    {
+        isReturning = false;
+        spear.transform.parent = transform;
+        spear.transform.position = attackPoint.position;
+        spear.transform.rotation = Quaternion.Euler(100, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        spearRB.isKinematic = true;
+        spearCol.enabled = true;
+        playerHasSpear = true;
+        addOns.itHit = false;
+    }
+    Vector3 ReturnCalculus(float t, Vector3 p0, Vector3 p1, Vector3 p2) {
+
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+        Vector3 p = (uu * p0) + (2 * u * t * p1) + tt * p2;
+        return p;
+
+
     }
 }
