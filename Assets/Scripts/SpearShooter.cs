@@ -20,13 +20,9 @@ public class SpearShooter : MonoBehaviour
     [SerializeField] private bool playerHasSpear;
     [SerializeField] private float time;
 
-    private SpearAddOns addOns;
-
-
     private void Start()
     {
         spearRB = spear.GetComponent<Rigidbody>();
-        addOns = spear.GetComponent<SpearAddOns>();
         playerHasSpear = true;
     }
 
@@ -76,7 +72,6 @@ public class SpearShooter : MonoBehaviour
         spearRB.isKinematic = true;
         spearCol.enabled = true;
         playerHasSpear = true;
-        addOns.itHit = false;
     }
     Vector3 ReturnCalculus(float t, Vector3 p0, Vector3 p1, Vector3 p2) {
 

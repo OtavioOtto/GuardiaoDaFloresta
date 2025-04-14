@@ -8,6 +8,8 @@ public class EnemyHealtManager : MonoBehaviour
     [SerializeField] private float currentHealth;
     [SerializeField] private Slider sliderHealth;
     [SerializeField] private GameObject slider;
+    [SerializeField] private Rigidbody spearRB;
+
     private void Update()
     {
         sliderHealth.value = currentHealth / health;
@@ -19,6 +21,7 @@ public class EnemyHealtManager : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(slider);
+            spearRB.isKinematic = false;
         }
         
     }

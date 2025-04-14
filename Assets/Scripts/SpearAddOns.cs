@@ -4,11 +4,11 @@ public class SpearAddOns : MonoBehaviour
 {
     public int damage;
     private Rigidbody rb;
-    public bool itHit;
+    private CapsuleCollider spearCollider;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        itHit = false;
+        spearCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
 
@@ -16,23 +16,17 @@ public class SpearAddOns : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
         {
+
+            spearCollider.enabled = false;
             rb.isKinematic = true;
             
             if (other.gameObject.GetComponent<EnemyHealtManager>() != null)
             {
                 EnemyHealtManager enemy = other.gameObject.GetComponent<EnemyHealtManager>();
                 enemy.TakeDamage(damage);
-                itHit = true;
             }
 
             
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Enemies"))
-            if (itHit)
-                rb.isKinematic = false;
     }
 }
