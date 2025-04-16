@@ -6,6 +6,7 @@ public class SpearShooter : MonoBehaviour
     [SerializeField] private Transform cam;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform curvePoint;
+    [SerializeField] private Transform spearCoM;
     [SerializeField] private GameObject spear;
     [SerializeField] private Rigidbody spearRB;
     [SerializeField] private CapsuleCollider spearCol;
@@ -23,6 +24,8 @@ public class SpearShooter : MonoBehaviour
     private void Start()
     {
         spearRB = spear.GetComponent<Rigidbody>();
+        spearRB.centerOfMass = spearCoM.position;
+        spear.GetComponent<TrailRenderer>().enabled = false;
         playerHasSpear = true;
     }
 
@@ -48,6 +51,7 @@ public class SpearShooter : MonoBehaviour
     {
         playerHasSpear = false;
         isReturning = false;
+        spear.GetComponent<TrailRenderer>().enabled = true;
         spear.transform.parent = null;  
         spearRB.isKinematic = false;
         spearRB.AddForce(Camera.main.transform.TransformDirection(Vector3.forward)*throwForce, ForceMode.Impulse);
@@ -57,6 +61,7 @@ public class SpearShooter : MonoBehaviour
     {
         spearRB.isKinematic = false;
         spearCol.enabled = false;
+        spear.GetComponent<TrailRenderer>().enabled = false;
         time = 0.0f;
         old_pos = spear.transform.position;
         isReturning = true;
@@ -71,6 +76,7 @@ public class SpearShooter : MonoBehaviour
         spear.transform.rotation = Quaternion.Euler(100, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         spearRB.isKinematic = true;
         spearCol.enabled = true;
+        spear.GetComponent<TrailRenderer>().enabled = false;
         playerHasSpear = true;
     }
     Vector3 ReturnCalculus(float t, Vector3 p0, Vector3 p1, Vector3 p2) {

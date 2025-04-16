@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SpearAddOns : MonoBehaviour
@@ -24,6 +25,7 @@ public class SpearAddOns : MonoBehaviour
             {
                 EnemyHealtManager enemy = other.gameObject.GetComponent<EnemyHealtManager>();
                 enemy.TakeDamage(damage);
+                gameObject.GetComponent<TrailRenderer>().enabled = false;
             }
 
             
