@@ -10,6 +10,7 @@ public class EnemyHealtManager : MonoBehaviour
     [SerializeField] private GameObject slider;
     [SerializeField] private GameObject spear;
     [SerializeField] private Rigidbody spearRB;
+    public GameObject trail;
 
     private void Update()
     {
@@ -20,7 +21,7 @@ public class EnemyHealtManager : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            spear.GetComponent<TrailRenderer>().enabled = true;
+            trail.GetComponent<TrailRenderer>().enabled = true;
             spear.GetComponent<CapsuleCollider>().enabled = true;
             Destroy(gameObject);
             Destroy(slider);

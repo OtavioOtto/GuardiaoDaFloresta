@@ -424,6 +424,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1078976532}
     m_Modifications:
     - target: {fileID: -8439529765420838058, guid: 955096cdffd94004fba18a94f148bb13, type: 3}
+      propertyPath: trail
+      value: 
+      objectReference: {fileID: 784185664}
+    - target: {fileID: -8439529765420838058, guid: 955096cdffd94004fba18a94f148bb13, type: 3}
       propertyPath: shooter
       value: 
       objectReference: {fileID: 1078976533}
@@ -1437,6 +1441,7 @@ MonoBehaviour:
   slider: {fileID: 128963360}
   spear: {fileID: 432928258}
   spearRB: {fileID: 432928261}
+  trail: {fileID: 784185664}
 --- !u!1 &784185664
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class SpearAddOns : MonoBehaviour
     private Rigidbody rb;
     private CapsuleCollider spearCollider;
     public SpearShooter shooter;
+    public GameObject trail;
     public bool isHit;
     void Start()
     {
@@ -35,7 +36,7 @@ public class SpearAddOns : MonoBehaviour
             {
                 EnemyHealtManager enemy = other.gameObject.GetComponent<EnemyHealtManager>();
                 enemy.TakeDamage(damage);
-                gameObject.GetComponent<TrailRenderer>().enabled = false;
+                trail.GetComponent<TrailRenderer>().enabled = false;
             }
 
             
