@@ -31,6 +31,7 @@ public class SpearAddOns : MonoBehaviour
             isHit = true;
             spearCollider.enabled = false;
             rb.isKinematic = true;
+            transform.parent = other.transform;
             
             if (other.gameObject.GetComponent<EnemyHealtManager>() != null)
             {

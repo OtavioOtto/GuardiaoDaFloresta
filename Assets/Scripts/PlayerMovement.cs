@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private float groundCheckDelay = 0.3f;
     private float playerHeight;
     private float raycastDistance;
+    public bool isMoving;
 
     void Start()
     {
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        isMoving = false;
     }
 
     void Update()
@@ -78,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer()
     {
+        isMoving = true;
         Vector3 movement = (transform.right * moveHorizontal + transform.forward * moveForward).normalized;
         Vector3 targetVelocity = movement * moveSpeed;
 
@@ -88,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && moveHorizontal == 0 && moveForward == 0)
         {
+            isMoving = false;
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
 

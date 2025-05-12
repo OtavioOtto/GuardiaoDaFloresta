@@ -26,6 +26,13 @@ public class DeerReleaser : MonoBehaviour
     {
         cageTransf = cageT;
         eachHole = gameObject.transform.name;
+
+
+        var b = new bool[512, 512];
+        for (var x = 0; x < 512; x++)
+            for (var y = 0; y < 512; y++)
+                b[x, y] = !(x > 251 && x < 255 && y > 367 && y < 371);
+        terrain.terrainData.SetHoles(0, 0, b);
     }
     private void OnTriggerEnter(Collider other)
     {

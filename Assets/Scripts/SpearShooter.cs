@@ -4,12 +4,12 @@ public class SpearShooter : MonoBehaviour
 {
     [Header("Game Objects")]
     [SerializeField] private Transform cam;
-    [SerializeField] private Transform attackPoint;
     [SerializeField] private Transform curvePoint;
     [SerializeField] private GameObject spear;
     [SerializeField] private GameObject trail;
     [SerializeField] private Rigidbody spearRB;
     [SerializeField] private CapsuleCollider spearCol;
+    [SerializeField] private Transform rightHand;
 
     [Header("Values")]
     [SerializeField] private float throwForce;
@@ -32,14 +32,12 @@ public class SpearShooter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && playerHasSpear && Time.timeScale != 0) 
-            ShootingMethod();
         if (Input.GetMouseButton(1) && !playerHasSpear && Time.timeScale != 0)
             ReturningMethod();
         if (isReturning) {
             if (time < 1.0f)
             {
-                spear.transform.position = ReturnCalculus(time, old_pos, curvePoint.position, attackPoint.position);
+                spear.transform.position = ReturnCalculus(time, old_pos, curvePoint.position, rightHand.position);
                 time += Time.deltaTime;
             }
             else
@@ -51,7 +49,7 @@ public class SpearShooter : MonoBehaviour
             
     }
 
-    void ShootingMethod() 
+    public void ShootingMethod() 
     {
         playerHasSpear = false;
         spearCol.enabled = true;
@@ -76,9 +74,9 @@ public class SpearShooter : MonoBehaviour
     void ResetSpear()
     {
         isReturning = false;
-        spear.transform.parent = transform;
-        spear.transform.position = attackPoint.position;
-        spear.transform.rotation = Quaternion.identity;
+        spear.transform.parent = rightHand;
+        spear.transform.localPosition = new Vector3(0,0,0);
+        spear.transform.rotation = rightHand.rotation;
         spearRB.isKinematic = true;
         spearCol.enabled = true;
         trail.GetComponent<TrailRenderer>().enabled = false;
