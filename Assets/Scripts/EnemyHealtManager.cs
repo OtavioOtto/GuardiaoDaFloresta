@@ -23,6 +23,7 @@ public class EnemyHealtManager : MonoBehaviour
         {
             trail.GetComponent<TrailRenderer>().enabled = true;
             spear.GetComponent<CapsuleCollider>().enabled = true;
+            spear.transform.parent = null;
             Destroy(gameObject);
             Destroy(slider);
             spearRB.isKinematic = false;    
