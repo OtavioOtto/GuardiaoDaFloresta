@@ -7,32 +7,25 @@ public class DeerReleaser : MonoBehaviour
     public Transform cageT;
     private Transform cageTransf;
     public GameObject deer;
-    [SerializeField] private Terrain terrain;
     [SerializeField] private string eachHole;
     [Header("First Hole")]
     [SerializeField] private GameObject firstHoleLimits;
-    [SerializeField] private GameObject firstHole;
     [SerializeField] private GameObject firstStone;
+    [SerializeField] private GameObject firstTrapDoor;
     [Header("Second Hole")]
-    [SerializeField] private GameObject secondHole;
     [SerializeField] private GameObject secondHoleLimits;
     [SerializeField] private GameObject secondStone;
+    [SerializeField] private GameObject secondTrapDoor;
     [Header("Third Hole")]
-    [SerializeField] private GameObject thirdHole;
     [SerializeField] private GameObject thirdHoleLimits;
     [SerializeField] private GameObject thirdStone;
-    
+    [SerializeField] private GameObject thirdTrapDoor;
+
     private void Start()
     {
         cageTransf = cageT;
         eachHole = gameObject.transform.name;
-
-
-        var b = new bool[512, 512];
-        for (var x = 0; x < 512; x++)
-            for (var y = 0; y < 512; y++)
-                b[x, y] = !(x > 251 && x < 255 && y > 367 && y < 371);
-        terrain.terrainData.SetHoles(0, 0, b);
+        firstTrapDoor.GetComponent<TrapdoorController>().ToggleTrapdoor();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -49,28 +42,33 @@ public class DeerReleaser : MonoBehaviour
         {
 
             firstHoleLimits.SetActive(false);
-            firstStone.GetComponent<BoxCollider>().enabled = false;
+            firstStone.GetComponent<Outline>().enabled = false;
+            firstTrapDoor.GetComponent<TrapdoorController>().ToggleTrapdoor();
 
             //colocar particula de terra
 
             secondHoleLimits.SetActive(true);
             secondStone.SetActive(true);
+            secondTrapDoor.GetComponent<TrapdoorController>().ToggleTrapdoor();
         }
         else if (eachHole.Equals("Hole2"))
         {
 
             secondHoleLimits.SetActive(false);
-            secondStone.GetComponent<BoxCollider>().enabled = false;
+            secondStone.GetComponent<Outline>().enabled = false;
+            secondTrapDoor.GetComponent<TrapdoorController>().ToggleTrapdoor();
 
             //colocar particula de terra
 
             thirdHoleLimits.SetActive(true);
             thirdStone.SetActive(true);
+            thirdTrapDoor.GetComponent<TrapdoorController>().ToggleTrapdoor();
         }
         else
         {
             thirdHoleLimits.SetActive(false);
-            thirdStone.GetComponent<BoxCollider>().enabled = false;
+            thirdStone.GetComponent<Outline>().enabled = false;
+            thirdTrapDoor.GetComponent<TrapdoorController>().ToggleTrapdoor();
 
             //colocar particula de terra
 

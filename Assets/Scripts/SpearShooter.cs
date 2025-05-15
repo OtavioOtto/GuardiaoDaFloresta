@@ -28,6 +28,7 @@ public class SpearShooter : MonoBehaviour
         spearRB = spear.GetComponent<Rigidbody>();
         trail.GetComponent<TrailRenderer>().enabled = false;
         playerHasSpear = true;
+        spear.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     void Update()

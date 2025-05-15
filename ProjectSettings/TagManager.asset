@@ -7,6 +7,7 @@ TagManager:
   - Bullet
   - Enemies
   - Stone
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Player
   - Stone
   - Enemies
-  - 
-  - 
+  - Trapdoors
+  - PuzzleHoles
   - 
   - 
   - 
