@@ -15,12 +15,11 @@ public class PlayerMovement : MonoBehaviour
     private float moveForward;
     public float jumpForce = 10f;
     public float fallMultiplier = 2.5f; 
-    public float ascendMultiplier = 2f; 
-    private bool isGrounded = true;
+    public float ascendMultiplier = 2f;
+    [SerializeField] private bool isGrounded = true;
     public LayerMask groundLayer;
     private float groundCheckTimer = 0f;
     private float groundCheckDelay = 0.3f;
-    private float playerHeight;
     private float raycastDistance;
     public bool isMoving;
 
@@ -31,8 +30,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         cameraTransform = Camera.main.transform;
 
-        playerHeight = GetComponent<CapsuleCollider>().height * transform.localScale.y;
-        raycastDistance = (playerHeight / 2) + 0.2f;
+        raycastDistance = .5f;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

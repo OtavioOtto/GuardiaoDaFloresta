@@ -1,8 +1,7 @@
 using UnityEngine;
 
 public class PushingStone : MonoBehaviour
-{
-    [SerializeField] private GameObject player;
+{ 
     [SerializeField] private bool playerInside;
     [SerializeField] private string direction;
     private Rigidbody stoneRB;

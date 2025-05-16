@@ -15,19 +15,19 @@ public class StoneGravityActivater : MonoBehaviour
     {
         if (other.CompareTag("Stone"))
         {
-            StartCoroutine(DisableConstraints());
+            StartCoroutine(DisableConstraints(other));
         }
        
     }
 
-    IEnumerator DisableConstraints()
+    IEnumerator DisableConstraints(Collider other)
     {
         yield return new WaitForSeconds(.5f);
-        if(stoneOne.activeSelf)
+        if(other.gameObject == stoneOne)
             stoneOneRB.constraints = RigidbodyConstraints.None;
-        if (stoneTwo.activeSelf)
+        if (other.gameObject == stoneTwo)
             stoneTwoRB.constraints = RigidbodyConstraints.None;
-        if (stoneThree.activeSelf)
+        if (other.gameObject == stoneThree)
             stoneThreeRB.constraints = RigidbodyConstraints.None;
     }
 
