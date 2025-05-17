@@ -33,7 +33,7 @@ public class SpearShooter : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1) && !playerHasSpear && Time.timeScale != 0)
+        if (Input.GetMouseButtonDown(1) && !playerHasSpear && Time.timeScale != 0)
             ReturningMethod();
         if (isReturning) {
             if (time < 1.0f)
