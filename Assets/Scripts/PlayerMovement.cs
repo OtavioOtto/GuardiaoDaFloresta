@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public float moveSpeed = 5f;
     private float sprintSpeed;
+    public bool isSprinting;
     private float moveHorizontal;
     private float moveForward;
     public float jumpForce = 10f;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float groundCheckDelay = 0.3f;
     private float raycastDistance;
     public bool isMoving;
+    [SerializeField] private PlayerStaminaHandler stamina;
 
     void Start()
     {
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
 
         isMoving = false;
+        isSprinting = false;
     }
 
     void Update()
@@ -65,10 +68,16 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && stamina.currentStamina > 0 && isMoving)
+        {
             moveSpeed = sprintSpeed;
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            moveSpeed = sprintSpeed/2;
+            isSprinting = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) || stamina.currentStamina <= 0)
+        {
+            moveSpeed = sprintSpeed / 2;
+            isSprinting = false;
+        }
     }
 
     void FixedUpdate()
@@ -104,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(0, horizontalRotation, 0);
 
             verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-            verticalRotation = Mathf.Clamp(verticalRotation, -40f, 10f);
+            verticalRotation = Mathf.Clamp(verticalRotation, -20f, 0f);
 
             cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         }

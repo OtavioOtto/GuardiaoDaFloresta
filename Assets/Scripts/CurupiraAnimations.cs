@@ -7,7 +7,8 @@ public class CurupiraAnimations : MonoBehaviour
     [SerializeField] private Animator anim;
 
     void Update()
-    {
+    { 
+
         if (movement.isMoving)
             anim.SetBool("andando", true);
 

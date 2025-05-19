@@ -10,6 +10,7 @@ public class SpearShooter : MonoBehaviour
     [SerializeField] private Rigidbody spearRB;
     [SerializeField] private CapsuleCollider spearCol;
     [SerializeField] private Transform rightHand;
+    [SerializeField] private Animator anim;
 
     [Header("Values")]
     [SerializeField] private float throwForce;
@@ -83,6 +84,7 @@ public class SpearShooter : MonoBehaviour
         trail.GetComponent<TrailRenderer>().enabled = false;
         playerHasSpear = true;
         addOns.isHit = false;
+        anim.SetBool("lancou", false);
     }
     Vector3 ReturnCalculus(float t, Vector3 p0, Vector3 p1, Vector3 p2) {
 
