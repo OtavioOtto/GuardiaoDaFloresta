@@ -15,23 +15,23 @@ public class PushingStone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerInside) 
+        if (Input.GetKey(KeyCode.E) && playerInside) 
         {
             switch (direction) {
                 case "ColliderRight":
-                    stoneRB.AddForce(new Vector3(-5,0,0), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(-.5f,0,0), ForceMode.VelocityChange);
                     break;
 
                 case "ColliderLeft":
-                    stoneRB.AddForce(new Vector3(5, 0, 0), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(.5f, 0, 0), ForceMode.VelocityChange);
                     break;
 
                 case "ColliderFront":
-                    stoneRB.AddForce(new Vector3(0, 0, -5), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(0, 0, -.5f), ForceMode.VelocityChange);
                     break;
 
                 case "ColliderBack":
-                    stoneRB.AddForce(new Vector3(0, 0, 5), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(0, 0, .5f), ForceMode.VelocityChange);
                     break;
             }
         }

@@ -11,6 +11,7 @@ public class StoneGravityActivater : MonoBehaviour
     [SerializeField] private Rigidbody stoneOneRB;
     [SerializeField] private Rigidbody stoneTwoRB;
     [SerializeField] private Rigidbody stoneThreeRB;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Stone"))
@@ -20,9 +21,10 @@ public class StoneGravityActivater : MonoBehaviour
        
     }
 
+   
     IEnumerator DisableConstraints(Collider other)
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         if(other.gameObject == stoneOne)
             stoneOneRB.constraints = RigidbodyConstraints.None;
         if (other.gameObject == stoneTwo)
