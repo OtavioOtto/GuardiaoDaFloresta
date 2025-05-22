@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: d1bbc33aa28000141bc468794b57654a
+  - enabled: 1
+    path: Assets/Scenes/GuardiaoDaFloresta.unity
+    guid: 82c660792c79a574aa25c23e614c2376
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
