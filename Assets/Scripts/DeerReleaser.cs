@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DeerReleaser : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class DeerReleaser : MonoBehaviour
     public Transform cageT;
     private Transform cageTransf;
     public GameObject deer;
+    public GameObject secondPuzzleObstacle;
+    public GameObject warningTxt;
     [SerializeField] private string eachHole;
     [Header("First Hole")]
     [SerializeField] private GameObject firstHoleLimits;
@@ -76,7 +79,16 @@ public class DeerReleaser : MonoBehaviour
             Destroy(cage);
             GameObject deerGO = Instantiate(deer, cageTransf.position, cageTransf.rotation);
             deerGO.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+            Destroy(secondPuzzleObstacle);
+            warningTxt.SetActive(true);
+            StartCoroutine(DestroyText());
         }
         
+    }
+
+    IEnumerator DestroyText() 
+    {
+        yield return new WaitForSeconds(3.5f);
+        warningTxt.SetActive(false);
     }
 }

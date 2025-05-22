@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public class PlayerHealthManager : MonoBehaviour
     {
         healthSlider.value = currentHealth / playerHealth;
         healthTxt.text = "" + currentHealth;
+
+        if (currentHealth <= 0) 
+        {
+            currentHealth = 0;
+            SceneManager.LoadScene(4);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)

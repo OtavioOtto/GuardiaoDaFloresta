@@ -19,19 +19,19 @@ public class PushingStone : MonoBehaviour
         {
             switch (direction) {
                 case "ColliderRight":
-                    stoneRB.AddForce(new Vector3(-.5f,0,0), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(-1f,0,0), ForceMode.VelocityChange);
                     break;
 
                 case "ColliderLeft":
-                    stoneRB.AddForce(new Vector3(.5f, 0, 0), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(1f, 0, 0), ForceMode.VelocityChange);
                     break;
 
                 case "ColliderFront":
-                    stoneRB.AddForce(new Vector3(0, 0, -.5f), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(0, 0, -1f), ForceMode.VelocityChange);
                     break;
 
                 case "ColliderBack":
-                    stoneRB.AddForce(new Vector3(0, 0, .5f), ForceMode.VelocityChange);
+                    stoneRB.AddForce(new Vector3(0, 0, 1f), ForceMode.VelocityChange);
                     break;
             }
         }

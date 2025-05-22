@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TargetsPuzzleHandler : MonoBehaviour
 {
@@ -55,9 +56,11 @@ public class TargetsPuzzleHandler : MonoBehaviour
 
         if (stopTimer)
         {
-            if(!puzzleComplete)
+            if (!puzzleComplete)
                 avisoTxt.SetActive(true);
-            slider.gameObject.SetActive(true);
+            else
+                SceneManager.LoadScene(3);
+
             obstacle.SetActive(false);
             countTxt.gameObject.SetActive(false);
             activateTimer = false;

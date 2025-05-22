@@ -31,7 +31,7 @@ public class PlayerStaminaHandler : MonoBehaviour
             }
             isWaitingForCooldown = false;
 
-            currentStamina -= 0.0005f;
+            currentStamina -= 0.005f;
         }
         else if (!move.isSprinting && rechargeCoroutine == null && !isWaitingForCooldown)
         {

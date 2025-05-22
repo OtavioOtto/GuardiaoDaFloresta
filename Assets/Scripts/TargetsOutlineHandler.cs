@@ -43,6 +43,7 @@ public class TargetsOutlineHandler : MonoBehaviour
         {
             for (int i = 0; i < targets.Length; i++)
             {
+                Debug.Log("a");
                 outline = targets[i].GetComponent<Outline>();
                 outline.enabled = true;
             }

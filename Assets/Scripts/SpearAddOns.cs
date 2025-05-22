@@ -40,7 +40,14 @@ public class SpearAddOns : MonoBehaviour
                 trail.GetComponent<TrailRenderer>().enabled = false;
             }
 
-            
+            if (other.gameObject.GetComponent<BaseEnemyAI>() != null)
+            {
+                BaseEnemyAI enemy = other.gameObject.GetComponent<BaseEnemyAI>();
+                enemy.TakeDamage(damage);
+                trail.GetComponent<TrailRenderer>().enabled = false;
+            }
+
+
         }
     }
 }
