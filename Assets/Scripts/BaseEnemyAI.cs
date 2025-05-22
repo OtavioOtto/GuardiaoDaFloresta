@@ -7,6 +7,7 @@ public class BaseEnemyAI : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private float health;
+    [SerializeField] private GameObject spear;
 
 
     [Header("Patrolling")]
@@ -101,6 +102,9 @@ public class BaseEnemyAI : MonoBehaviour
 
     private void DestroyEnemy() 
     {
+        spear.transform.parent = null;
+        spear.GetComponent<Rigidbody>().isKinematic = false;
+        spear.GetComponent <CapsuleCollider>().enabled = true;
         Destroy(gameObject);
     }
 }

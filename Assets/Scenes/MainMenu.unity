@@ -965,7 +965,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sair
+  m_text: Voltar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 85005bec4297c5443a5a2d0c8cb00e76, type: 2}
   m_sharedMaterial: {fileID: 4915984132216240185, guid: 85005bec4297c5443a5a2d0c8cb00e76, type: 2}

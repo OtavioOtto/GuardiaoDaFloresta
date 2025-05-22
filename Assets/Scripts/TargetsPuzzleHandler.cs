@@ -67,6 +67,7 @@ public class TargetsPuzzleHandler : MonoBehaviour
             currentTime = gameTime;
             puzzleStart = false;
             slider.gameObject.SetActive(false);
+            stopTimer = false;
         }
     }
 

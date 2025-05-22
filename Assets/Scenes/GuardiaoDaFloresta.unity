@@ -10454,6 +10454,7 @@ MonoBehaviour:
   cageT: {fileID: 970617542}
   deer: {fileID: 7402009758359158996, guid: 4ecab060b0afb5d4db61f7f1311b9e24, type: 3}
   secondPuzzleObstacle: {fileID: 349758193}
+  warningTxt: {fileID: 1892375275}
   eachHole: 
   firstHoleLimits: {fileID: 1351247174}
   firstStone: {fileID: 1987600626}
@@ -10747,7 +10748,7 @@ MonoBehaviour:
   slider: {fileID: 1588702926}
   timerTxt: {fileID: 1325336777}
   countTxt: {fileID: 1845634414}
-  gameTime: 30
+  gameTime: 60
   stopTimer: 0
   puzzleComplete: 0
 --- !u!1 &851375257
@@ -12345,8 +12346,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 111.82641, y: 112.211075, z: 112.18729}
-  m_Center: {x: -0.03933229, y: 56.97051, z: -0.7977901}
+  m_Size: {x: 140.32257, y: 121.70331, z: 143.4547}
+  m_Center: {x: 1.3735393, y: 52.22439, z: -37.268517}
 --- !u!4 &970617542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f096a3eafa6318c4da9a93da6d36cb4a, type: 3}
@@ -13631,7 +13632,7 @@ Transform:
   m_GameObject: {fileID: 1078976530}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0008619302, y: -0.0005690934, z: 0.0025618572, w: 0.9999962}
-  m_LocalPosition: {x: 265.5, y: 4.41, z: 559}
+  m_LocalPosition: {x: 197.4, y: 4.6, z: 206.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20087,6 +20088,7 @@ MonoBehaviour:
   cageT: {fileID: 970617542}
   deer: {fileID: 7402009758359158996, guid: 4ecab060b0afb5d4db61f7f1311b9e24, type: 3}
   secondPuzzleObstacle: {fileID: 349758193}
+  warningTxt: {fileID: 1892375275}
   eachHole: 
   firstHoleLimits: {fileID: 1351247174}
   firstStone: {fileID: 1987600626}
@@ -22082,15 +22084,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 11162ba785dca0449afc08752b8f7f19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 265.5
+      value: 197.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11162ba785dca0449afc08752b8f7f19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.41
+      value: 4.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11162ba785dca0449afc08752b8f7f19, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 559
+      value: 206.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 11162ba785dca0449afc08752b8f7f19, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22483,6 +22485,7 @@ MonoBehaviour:
   cageT: {fileID: 970617542}
   deer: {fileID: 7402009758359158996, guid: 4ecab060b0afb5d4db61f7f1311b9e24, type: 3}
   secondPuzzleObstacle: {fileID: 349758193}
+  warningTxt: {fileID: 1892375275}
   eachHole: 
   firstHoleLimits: {fileID: 1351247174}
   firstStone: {fileID: 1987600626}
@@ -24124,6 +24127,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   health: 60
+  spear: {fileID: 712373155}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkPointRange: 5
