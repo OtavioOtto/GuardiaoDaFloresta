@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             transform.Rotate(0, horizontalRotation, 0);
 
             verticalRotation -= Input.GetAxis("Mouse Y") * mouseSensitivity;
-            verticalRotation = Mathf.Clamp(verticalRotation, -20f, 0f);
+            verticalRotation = Mathf.Clamp(verticalRotation, -20f, 20f);
 
             cameraTransform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
         }

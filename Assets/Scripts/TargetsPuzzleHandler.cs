@@ -68,6 +68,13 @@ public class TargetsPuzzleHandler : MonoBehaviour
             puzzleStart = false;
             slider.gameObject.SetActive(false);
             stopTimer = false;
+
+            int count = gameObject.transform.childCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                gameObject.transform.GetChild(i).GetComponentInChildren<TargetHit>().hit = false;
+            }
         }
     }
 

@@ -8,8 +8,10 @@ public class TargetsOutlineHandler : MonoBehaviour
 
     private TargetHit hit;
     private TargetsPuzzleHandler handler;
+    private bool playerInside;
     void Start()
     {
+        playerInside = false;
         handler = gameObject.GetComponent<TargetsPuzzleHandler>();
 
         int children = transform.childCount;
@@ -34,16 +36,19 @@ public class TargetsOutlineHandler : MonoBehaviour
             TargetHit hitVerifier = targets[i].GetComponentInChildren<TargetHit>();
             if (outline.enabled && hitVerifier.hit)
                 outline.enabled = false;
+
+            if (!outline.enabled && !hitVerifier.hit && playerInside)
+                outline.enabled = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        playerInside = true;
         if (other.CompareTag("Player") && !handler.puzzleComplete) 
         {
             for (int i = 0; i < targets.Length; i++)
             {
-                Debug.Log("a");
                 outline = targets[i].GetComponent<Outline>();
                 outline.enabled = true;
             }
@@ -53,6 +58,7 @@ public class TargetsOutlineHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        playerInside = false;
         if (other.CompareTag("Player"))
         {
             for (int i = 0; i < targets.Length; i++)
