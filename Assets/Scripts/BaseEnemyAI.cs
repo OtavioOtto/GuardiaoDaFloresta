@@ -8,6 +8,7 @@ public class BaseEnemyAI : MonoBehaviour
     [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] private float health;
     [SerializeField] private GameObject spear;
+    [SerializeField] private Animator anim;
 
 
     [Header("Patrolling")]
@@ -27,6 +28,7 @@ public class BaseEnemyAI : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -97,10 +99,15 @@ public class BaseEnemyAI : MonoBehaviour
         health -= damage;
 
         if (health <= 0)
-            Invoke(nameof(DestroyEnemy), 0.5f);
+        {
+            anim.SetBool("hasDied", true);
+            playerInAttackRange = false;
+            playerInSightRange = false;
+            agent.speed = 0;
+        }
     }
 
-    private void DestroyEnemy() 
+    public void DestroyEnemy() 
     {
         spear.transform.parent = null;
         spear.GetComponent<Rigidbody>().isKinematic = false;

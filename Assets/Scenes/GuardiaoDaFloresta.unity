@@ -24400,6 +24400,7 @@ MonoBehaviour:
     m_Bits: 128
   health: 60
   spear: {fileID: 712373155}
+  anim: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkPointRange: 5
@@ -24429,7 +24430,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!136 &2079065372
 CapsuleCollider:
@@ -24450,7 +24451,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Height: 5.0127163
   m_Direction: 1
   m_Center: {x: 0, y: 2.0063581, z: 0}
